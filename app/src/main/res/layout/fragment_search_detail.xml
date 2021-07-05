@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jean.mercadopago.screens.home.viewmodel.HomeViewModel" />
+
+        <variable
+            name="search"
+            type="com.jean.mercadopago.data.models.search.Result" />
+        <import type="android.view.View" />
+    </data>
+    <ScrollView
+        android:id="@+id/second_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_fragment_search_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            tools:context=".screens.home.view.HomeActivity">
+
+
+            <TextView
+                android:id="@+id/tvSelledProduct"
+                style="@style/grayTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_sixteen"
+                android:contentDescription='@{String.valueOf(search.sold_quantity)+ " vendidos"}'
+                android:text='@{String.valueOf(search.sold_quantity)+ " vendidos"}'
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/dummy_selled_product" />
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/rowListBuy"
+                android:layout_width="0dp"
+                android:contentDescription="@{search.title}"
+                android:layout_height="wrap_content"
+                android:text="@{search.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_sixteen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelledProduct"
+                tools:text="@string/dummy_txt_product" />
+
+            <TextView
+                android:id="@+id/tvNotIva"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_sixteen"
+                android:layout_marginTop="@dimen/margin_sixteen"
+                android:background="@drawable/round_blue"
+                android:padding="@dimen/padding_three"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                android:text="@string/dummy_not_iva" />
+
+
+            <TextView
+                android:id="@+id/tvPriceDetail"
+                style="@style/rowListBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_sixteen"
+                android:layout_marginTop="@dimen/margin_thirty_two"
+                android:text='@{"$ " + search.price}'
+                android:contentDescription='@{"Precio producto: " + search.price}'
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_thirty"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNotIva"
+                tools:text="@string/hint_money" />
+
+            <TextView
+                android:id="@+id/tvInstallmentsDetail"
+                style="@style/rowListBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:contentDescription='@{"en "+ search.installments.quantity+"x $ " + search.installments.amount}'
+                android:text='@{"en "+ search.installments.quantity+"x $ " + search.installments.amount}'
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_eighteen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceDetail"
+                tools:text="@string/hint_money" />
+            <TextView
+                android:id="@+id/tvAvailableStock"
+                style="@style/rowListBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:textStyle="bold"
+                android:visibility="@{search.available_quantity>0? View.VISIBLE:View.GONE}"
+                android:text="@string/hint_available_stock"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_fourthteen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvInstallmentsDetail"
+                />
+            <TextView
+                android:id="@+id/tvFreeShippingDetail"
+                style="@style/rowListBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:visibility="@{search.shipping.free_shipping ? View.VISIBLE:View.GONE}"
+                android:text="@string/hint_free_shipping"
+                android:textColor="@color/greenTitle"
+                android:textSize="@dimen/txt_size_fourthteen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAvailableStock"
+                />
+
+            <include
+                android:id="@+id/cpMercadoPago"
+                layout="@layout/cp_mercado_pago"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_sixteen"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:visibility="@{search.accepts_mercadopago?View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFreeShippingDetail" />
+
+            <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_sixteen"
+                android:contentDescription="@string/share_product"
+                android:visibility="@{search.permalink!=null?View.VISIBLE:View.GONE}"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:src="@drawable/ic_share"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cpMercadoPago" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

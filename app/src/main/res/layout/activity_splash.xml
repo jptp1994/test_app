@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="splashViewModel"
+            type="com.jean.mercadopago.screens.splash.viewmodel.SplashViewModel" />
+        <import type="android.view.View" />
+    </data>
+    <ScrollView
+        android:id="@+id/second_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        tools:context=".screens.splash.view.SplashActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginTop="@dimen/margin_sixteen"
+            android:src="@drawable/ic_mercado"
+            android:contentDescription="@string/mercado_libre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/progress"
+            android:visibility="gone"
+            layout="@layout/cp_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_twenty_four"
+            android:text="@string/country_txt"
+            android:contentDescription="@string/country_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/txt_size_twenty"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCountry"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_thirty_two"
+            android:layout_marginTop="@dimen/margin_sixteen"
+            android:layout_marginEnd="@dimen/margin_twenty_four"
+            android:layout_marginBottom="@dimen/margin_sixteen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:listitem="@layout/item_country"
+            app:spanCount="1"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+</layout>

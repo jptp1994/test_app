@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.jean.mercadopago.screens.home.viewmodel.HomeViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_fragment_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".screens.home.view.HomeActivity">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/searchHint"
+            android:background="@color/primary"
+            app:closeIcon="@drawable/ic_close_icon_new"
+            app:searchHintIcon="@drawable/ic_search"
+            app:searchIcon="@drawable/ic_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="@string/searchHint">
+
+        </androidx.appcompat.widget.SearchView>
+
+        <TextView
+            android:id="@+id/tvResultsNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_eight"
+            android:background="@color/white"
+            android:contentDescription="@string/result_search"
+            android:paddingHorizontal="@dimen/padding_five"
+            android:paddingVertical="@dimen/padding_ten"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_fourthteen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_artist"
+            tools:text="@string/results_hint" />
+        <include
+            android:id="@+id/progressHome"
+            android:visibility="gone"
+            layout="@layout/cp_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/errorSearch"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            layout="@layout/cp_search_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvResultsNumber"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearchList"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvResultsNumber"
+            tools:listitem="@layout/row_search"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

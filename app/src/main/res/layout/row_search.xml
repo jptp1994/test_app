@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="search"
+            type="com.jean.mercadopago.data.models.search.Result" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/itemSearch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/lineDivisor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/grayText"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMostSell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_title"
+        android:paddingHorizontal="@dimen/padding_three"
+        android:paddingVertical="@dimen/padding_three"
+        android:text="@string/last_available"
+        android:textColor="@color/white"
+        android:visibility="@{search.available_quantity>9 ? View.GONE : View.VISIBLE}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/rowListBuy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_thirty_two"
+        android:layout_marginEnd="@dimen/margin_thirty_two"
+        android:text="@{search.title}"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_fourthteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMostSell"
+        tools:text="@string/dummy_txt_product" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        style="@style/rowListBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='@{"$ " + String.valueOf(search.price)}'
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_twenty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="@string/hint_money" />
+
+    <TextView
+        android:id="@+id/tvCuotes"
+        style="@style/rowListBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='@{"en "+ search.installments.quantity+"x $ " + search.installments.amount}'
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_twelve"
+        android:visibility="@{search.installments!=null? View.VISIBLE: View.GONE}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+        tools:text="@string/hint_cuotes" />
+
+
+    <TextView
+        android:id="@+id/tvSelled"
+        style="@style/rowListBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='@{String.valueOf(search.sold_quantity)+ " Vendidos"}'
+        android:textColor="@color/greenTitle"
+        android:textSize="@dimen/txt_size_twelve"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCuotes"
+        tools:text="@string/hint_selled" />
+
+    <TextView
+        android:id="@+id/tvFreeShipping"
+        style="@style/rowListBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/greenTitle"
+        android:textSize="@dimen/txt_size_twelve"
+        android:visibility="@{search.shipping.free_shipping? View.VISIBLE: View.GONE}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSelled"
+        tools:text="@string/hint_free_shipping" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/favorite"
+        android:layout_marginTop="@dimen/margin_four"
+        android:layout_marginEnd="@dimen/margin_eight"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/vpActive" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

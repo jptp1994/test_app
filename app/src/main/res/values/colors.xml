@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="grayBackground">#EEEEEE</color>
+    <color name="grayText">#777777</color>
+    <color name="greenTitle">#339933</color>
+    <color name="orangeTitle">#FF6600</color>
+    <color name="primary">#FFE600</color>
+    <color name="yellowRow">#E6FDF49C</color>
+    <color name="vpActive">#284EBE</color>
+    <color name="vpInactive">#FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
